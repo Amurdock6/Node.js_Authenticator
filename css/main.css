@@ -1,0 +1,57 @@
+body{
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 25vh;
+    font-size: 50px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 25vh;
+}
+
+
+#email{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2vh;
+}
+
+#email input, #password input{
+    height: 30px;
+    width: 220px;
+}
+
+#password{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4vh;
+}
+
+#email-label{
+    margin-right: 181px;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    margin-right: 160px;
+}
+
+button{
+    width: 225px;
+}
+
+#button-wrapper{
+    display: flex;
+    justify-content: center;
+}
