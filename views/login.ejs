@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Login page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <h1>Login Page</h1>
+
+    <div class="wrapper">
+        <form action="/login" method="POST">
+            <label id="email-label">Email</label>
+            <div class="textarea" id="email">
+                <input type="email" name="email" id="authentactor-email" value="" required>
+            </div>
+
+            <label>Password</label>
+            <div class="textarea" id="password">
+                <input type="password" name="password" id="authentactor-password" value="" required>
+            </div>
+
+            <div id="button-wrapper">
+                <button type="submit" id="button">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
