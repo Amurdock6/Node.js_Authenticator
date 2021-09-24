@@ -3,7 +3,10 @@ const User = require('../model/User');
 const verify = require('./verifyToken');
 
 router.get('/', verify, (req,res) => {
-    res.send(req.user);
+    res.json({posts: {
+        title: 'Test', 
+        description: 'should only be able to access with a JWT'}
+    });
 });
 
 module.exports = router;

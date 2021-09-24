@@ -46,15 +46,13 @@ router.post('/login', async (req,res) => {
 
     //Check if password is correct
     const validPass= await bcrypt.compare(req.body.password, user.password);
-    if(!validPass) return res.statue(400).send('Invalid password')
+    if(!validPass) return res.status(400).send('Invalid password')
     
-    //Redirects you to welcome page after successful login
-    res.redirect('/welcome');
-
     //Creat and assign json web token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
-    res.send('Logged in Successfully!');
+    res.header('auth-token', token);
+    //Redirects you to welcome page after successful login
+    res.redirect('/welcome');
 });
 
 module.exports = router;

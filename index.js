@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
 const res = require('express/lib/response');
+const { verify } = require('jsonwebtoken');
 
 
 dotenv.config();
@@ -26,10 +27,9 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 });
 
-app.get('/welcome', (req, res) => {
-    res.render('welcome.ejs')
+app.get('/welcome', verify, (req, res) => {
+    res.render('welcome.ejs', { username: 'Alex'})
 });
-
 
 //Sends From Info to database
 app.post('/register', authRoute);

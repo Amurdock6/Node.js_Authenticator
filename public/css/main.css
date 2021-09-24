@@ -80,6 +80,11 @@ button{
     padding: 6px;
     border: 2px solid #000;
     font-size: 1.35rem;
+    color: #000;
+}
+
+.wrapper-1 a::before {
+    color: black;
 }
 
 #login{
