@@ -49,8 +49,16 @@ router.post('/login', async (req,res) => {
     if(!validPass) return res.status(400).send('Invalid password')
     
     //Creat and assign json web token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token);
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, {expiresIn: "1h" });
+
+    res.cookie('auth-token', token, {
+        httpOnly: true
+        // secure: false,
+        // maxAge: 1000000,
+        //signed: true,
+    });
+
+    //res.header('auth-token', token);
     //Redirects you to welcome page after successful login
     res.redirect('/welcome');
 });

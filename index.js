@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 //Import Routes
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
 const res = require('express/lib/response');
 const { verify } = require('jsonwebtoken');
+const verifyJsonWebToken = require('./routes/verifyToken');
+const { cookie } = require('express/lib/response');
 
 
 dotenv.config();
@@ -14,6 +17,7 @@ dotenv.config();
 //Set views
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({extended: false }))
+
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
@@ -27,7 +31,7 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 });
 
-app.get('/welcome', verify, (req, res) => {
+app.get('/welcome', verifyJsonWebToken, (req, res) => {
     res.render('welcome.ejs', { username: 'Alex'})
 });
 
@@ -48,6 +52,7 @@ mongoose.connect(
 
 //Middleware
 app.use(express.json());
+app.use(cookieParser());
 //Route Middlewares
 app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
