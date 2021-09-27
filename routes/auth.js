@@ -1,9 +1,12 @@
-const router = require('express').Router();
+const router = require('express')();
+const cookieParser = require('cookie-parser')
 const User = require('../model/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const {registerValidation, loginValidation} = require('../validation');
 const { redirect } = require('express/lib/response');
+
+router.use(cookieParser())
 
 //Register New User
 router.post('/register', async (req,res) => {
@@ -49,15 +52,14 @@ router.post('/login', async (req,res) => {
     if(!validPass) return res.status(400).send('Invalid password')
     
     //Creat and assign json web token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, {expiresIn: "1h" });
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
 
-    res.cookie('auth-token', token, {
-        httpOnly: true
+ res.cookie('auth_token', token, {
+        httpOnly: true,
         // secure: false,
         // maxAge: 1000000,
-        //signed: true,
-    });
-
+        // signed: true,
+    })
     //res.header('auth-token', token);
     //Redirects you to welcome page after successful login
     res.redirect('/welcome');

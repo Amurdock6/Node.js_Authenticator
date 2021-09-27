@@ -51,8 +51,8 @@ mongoose.connect(
 );
 
 //Middleware
-app.use(express.json());
 app.use(cookieParser());
+app.use(express.json());
 //Route Middlewares
 app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
