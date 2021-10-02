@@ -11,8 +11,8 @@ const { verify } = require('jsonwebtoken');
 const verifyJsonWebToken = require('./routes/verifyToken');
 const { cookie } = require('express/lib/response');
 
-
 dotenv.config();
+
 
 //Set views
 app.set('view-engine', 'ejs')

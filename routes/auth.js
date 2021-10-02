@@ -36,6 +36,7 @@ router.post('/register', async (req,res) => {
     }catch(err){
         res.status(400).send(err);
     }
+
 });
 
 //Login
@@ -45,24 +46,19 @@ router.post('/login', async (req,res) => {
 
     //Checking if eamil exist in database
     const user = await User.findOne({email: req.body.email});
-    if(!user) return res.status(400).send('Email or password does not exists');
+    if(!user) return res.status(400).send('Invalid Email');
 
     //Check if password is correct
-    const validPass= await bcrypt.compare(req.body.password, user.password);
+    const validPass = await bcrypt.compare(req.body.password, user.password);
     if(!validPass) return res.status(400).send('Invalid password')
     
     //Creat and assign json web token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-
- res.cookie('auth_token', token, {
-        httpOnly: true,
-        // secure: false,
-        // maxAge: 1000000,
-        // signed: true,
-    })
-    //res.header('auth-token', token);
+    res.header('auth-token', token);
+    
     //Redirects you to welcome page after successful login
-    res.redirect('/welcome');
+     res.redirect('/welcome');
+
 });
 
 module.exports = router;
