@@ -51,14 +51,18 @@ router.post('/login', async (req,res) => {
     //Check if password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password);
     if(!validPass) return res.status(400).send('Invalid password')
-    
+   
     //Creat and assign json web token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token);
+    return res
+    .cookie("auth_token", token, {
+        httpOnly: true,
+        secure: process.env.TOKEN_SECRET === "production",
+    })
+    .status(200),
+    res.redirect('/welcome');
     
-    //Redirects you to welcome page after successful login
-     res.redirect('/welcome');
-
 });
+
 
 module.exports = router;

@@ -50,6 +50,8 @@ mongoose.connect(
 () => console.log('connected to db!')
 );
 
+
+
 //Middleware
 app.use(cookieParser());
 app.use(express.json());
