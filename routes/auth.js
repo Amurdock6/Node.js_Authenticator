@@ -55,7 +55,7 @@ router.post('/login', async (req,res) => {
     //Creat and assign json web token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     return res
-    .cookie("auth_token", token, {
+    .cookie('auth_token', token, {
         httpOnly: true,
         secure: process.env.TOKEN_SECRET === "production",
     })
@@ -63,6 +63,5 @@ router.post('/login', async (req,res) => {
     res.redirect('/welcome');
     
 });
-
 
 module.exports = router;
