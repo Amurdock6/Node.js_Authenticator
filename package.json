@@ -16,8 +16,13 @@
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
+<<<<<<< Updated upstream
     "mongoose": "^6.0.9",
     "mongose": "0.0.2-security"
+=======
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.6"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

@@ -53,9 +53,15 @@ router.post('/login', async (req,res) => {
     if(!validPass) return res.status(400).send('Invalid password')
    
     //Creat and assign json web token
+<<<<<<< Updated upstream
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     return res
     .cookie('auth_token', token, {
+=======
+    const token = jwt.sign({_id: user._id, name: user.name}, process.env.TOKEN_SECRET);
+
+ res.cookie('auth_token', token, {
+>>>>>>> Stashed changes
         httpOnly: true,
         secure: process.env.TOKEN_SECRET === "production",
     })
